@@ -1,0 +1,9 @@
+﻿@page "/charts"
+@inherits ChartsComponent
+
+<h1>Charts</h1>
+
+<Chart Id="line-example" Type="ChartType.Line" DataSource="@LineChartDataSource" XKey="month" YKeys="value" Labels="Values" />
+<Chart Id="area-example" Type="ChartType.Area" DataSource="@AreaChartDataSource" XKey="year" YKeys="a,b,c" Labels=".NET Core,ASP.NET Core,EntityFramework Core" />
+<Chart Id="bar-example" Type="ChartType.Bar" DataSource="@BarChartDataSource" XKey="year" YKeys="i,pr,c" Labels="Issues,Pull Requests,Comments" />
+<Chart Id="donut-example" Type="ChartType.Donut" DataSource="@DonutChartDataSource" />
