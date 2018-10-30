@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore.Blazor.Components
+
+<div id="@Id"></div>
+
+@functions{
+    [Parameter]
+    private string Id { get; set; }
+
+    [Parameter]
+    private ChartType Type { get; set; }
+
+    [Parameter]
+    private IEnumerable<object> DataSource { get; set; }
+
+    [Parameter]
+    private string XKey { get; set; }
+
+    [Parameter]
+    private string YKeys { get; set; }
+
+    [Parameter]
+    private string Labels { get; set; }
+
+    protected override void OnAfterRender()
+    {
+        switch (Type)
+        {
+            case ChartType.Area:
+                ChartJSInterop.InitializeAreaChart(Id, DataSource, XKey, YKeys.Split(','), Labels.Split(','));
+                break;
+            case ChartType.Bar:
+                ChartJSInterop.InitializeBarChart(Id, DataSource, XKey, YKeys.Split(','), Labels.Split(','));
+                break;
+            case ChartType.Donut:
+                ChartJSInterop.InitializeDonutChart(Id, DataSource);
+                break;
+            case ChartType.Line:
+                ChartJSInterop.InitializeLineChart(Id, DataSource, XKey, YKeys.Split(','), Labels.Split(','));
+                break;
+        }
+    }
+}
